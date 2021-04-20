@@ -1,0 +1,56 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+	
+	<style>
+		div input, select {
+			margin:10px;
+		}
+	</style>
+	
+	<body>
+		<div id="app"></div>
+		
+		<div id="app1"></div>
+	</body>
+	
+	<script type="text/babel">
+		
+		class Signin extends React.Component{	
+			constructor(props){
+				super(props);
+				this.state = {name:"", pwd:""};
+			}
+						
+			render(){
+				return (
+                    <div>
+						Name:<input onChange={this.read} name="name" type="text" value={this.state.name}/>
+						Pasword:<input onChange={this.read} name="pwd" type="text" value={this.state.pwd}/>
+						<button onClick={this.clk} >signin</button>
+						<a href="sign-up.html" target="_blank">Sign Up</a>
+					</div>
+                )
+            }
+            clk=()=>{
+                // window.location.href = 'welcome.html'
+                const res=this.state.name
+                ReactDOM.render(<Message res={res} />,document.querySelector("#app"));
+            }
+            read= (ele) =>{
+                this.setState({[ele.target.name]:ele.target.value});     
+            }
+        }
+        class Message extends React.Component{
+            render(){
+				return (
+                    <div>Hi {this.props.res}</div>
+                    )
+            }
+        }
+        ReactDOM.render(<Signin />,document.querySelector("#app"));
+    </script>
+</html>

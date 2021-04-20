@@ -9,7 +9,7 @@
     
 }
 .bg-img{
-    background-image: url('images/milky-way-2695569_1920.jpg');
+    background-image: url('images/gold-foil-digital-paper-6051502_1920.jpg');
     background-color: rgba(255,255,255,0);
     background-blend-mode: overlay;
     background-repeat: no-repeat;
@@ -19,7 +19,7 @@
    
 }
 .bg-img1{
-    background-image: url('images/stones-167089_1920.jpg');
+    background-image: url('images/calculator-168360_1920.jpg');
     background-color: rgba(255,255,255,0);
     background-blend-mode: overlay;
     background-repeat: no-repeat;
@@ -27,4 +27,7 @@
     background-size: cover;
     background-position: center;
    
+}
+.btn{
+    margin: 20px;
 }
