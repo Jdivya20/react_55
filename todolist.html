@@ -73,12 +73,14 @@
             remove=(i)=>{
                 // list:[...this.state.list]
                 //  list.splice(i, 1)
-                 this.setState(oldstate=>{ 
-                const list=[...this.state.list]
-                console.log(list)
-                list.splice(i,1)
-                console.log(list.splice(i,1))
-                    list:list
+                //  this.setState({ 
+                const list1=[...this.state.list]
+                console.log(list1)
+                list1.splice(i,1)
+                // console.log(list1.splice(i,1))
+                this.setState({ 
+                    list:list1,
+                    count:this.state.count-1
                 })
             }
             clk=()=>{
