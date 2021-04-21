@@ -2,7 +2,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>
-		Calculator
+		Todolist
 	</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -24,8 +24,8 @@
 	</style> -->
 	</head>
 	
-	<body class="bg-img">
-		<div id="app"class="block"></div>
+	<body>
+		<div id="app"></div>
 		
 		<div id="app1"></div>
 	</body>
@@ -35,44 +35,70 @@
 		class Signin extends React.Component{	
 			constructor(props){
 				super(props);
-				this.state = {name:"", 
-							pwd:""};
+				this.state = {input:"",list:[],count:0};
+               
 			}
 						
 			render(){
+                
 				return (
                     <div>
-						<h1>Sign-in</h1>
-						<form>
 						<div class="form-group">
-							<i class="fa fa-user fa-lg"></i><input class="form-rounded" onChange={this.read} name="name" type="text" value={this.state.name} placeholder="username" required="true"/>
+							<input  onChange={this.read} name="input" type="text" value={this.state.input} />
 						</div>
-						<div class="form-group">
-							<i class="fas fa-key"></i><input class="form-rounded" onChange={this.read} name="pwd" type="password" value={this.state.pwd} placeholder="password"/>
-						</div>
-						<button className="btn btn-danger" onClick={this.clk} >signin</button><br/>
-						<h5>Don't have an account yet?</h5>
-						<a href="sign-up.html" target="_blank">Sign Up</a><br/><br/>
-						</form>
+					
+						<button className="btn btn-danger" onClick={this.clk} >add</button><br/>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Task</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+						{
+                            this.state.list.map((ele,i)=>
+                                <tr key={i}><td>{ele}</td><td><button onClick={this.remove}>Remove</button></td></tr>
+                            )
+                        }
+                        </tbody>
+                        </table>
+                       
+                        <h4>Array length is { this.state.count }.</h4>
+                        
+						
 					</div>
                 )
             }
+            remove=(i)=>{
+                // list:[...this.state.list]
+                //  list.splice(i, 1)
+                 this.setState(oldstate=>{ 
+                const list=[...this.state.list]
+                console.log(list)
+                list.splice(i,1)
+                console.log(list.splice(i,1))
+                    list:list
+                })
+            }
             clk=()=>{
-                // window.location.href = 'welcome.html'
-                const res=this.state.name
-                ReactDOM.render(<Message res={res} />,document.querySelector("#app"));
+                
+                if(this.state.input!==""){
+                this.setState({
+                    list:[...this.state.list,this.state.input],input:"",count:this.state.count+1
+                })
+                // this.setState({
+                //     count:list.length
+                // })
+                // var res=list.length
+                // conole.log(list.length)
+            }
             }
             read= (ele) =>{
                 this.setState({[ele.target.name]:ele.target.value});     
             }
         }
-        class Message extends React.Component{
-            render(){
-				return (
-                    <div><h3>Hi {this.props.res}</h3></div>
-                    )
-            }
-        }
+        
         ReactDOM.render(<Signin />,document.querySelector("#app"));
     </script>
 </html>
