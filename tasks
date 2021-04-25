@@ -1,4 +1,4 @@
-[{task:"Task1",deadline:"10:34"},
- {task:"Task2",deadline:"5:34"},
- {task:"Task3",deadline:"21:34"}
+[{"task":"Task1","deadline":"10:34"},
+ {"task":"Task2","deadline":"5:34"},
+ {"task":"Task3","deadline":"21:34"}
  ]
