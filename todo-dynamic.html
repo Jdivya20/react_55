@@ -72,7 +72,7 @@
                             <tbody>
 						{
                             this.state.tasks.map((ele,i)=>
-                                <tr key={i}><td>{ele}</td><td><button value={i} className="btn btn-danger"onClick={(event)=>{this.remove(event,i)}
+                                <tr key={i}><td>{ele.task}</td><td><button value={i} className="btn btn-danger"onClick={(event)=>{this.remove(event,i)}
 }>Remove</button>&nbsp; &nbsp;
                                     <button value={i} className="btn btn-danger"onClick={this.edit}>edit</button>
                                     </td></tr>
@@ -81,6 +81,8 @@
                         }
                         </tbody>
                         </table>
+                        
+                        <div>
                        
                         <h4>The number of items in the tasks are { this.state.tasks.length }.</h4>
                         <h1>Todotasks in Recyclebin</h1>
@@ -96,15 +98,15 @@
                             <tbody>
 						{
                             this.state.cached.map((ele,i)=>
-                                <tr key={i}><td>{ele}</td><td><button value={i} className="btn btn-danger"onClick={this.delete}>Remove</button>&nbsp; &nbsp;
-                                    <button value={i} className="btn btn-danger"onClick={this.restore}>restore</button>
+                                <tr key={i}><td>{ele.task}</td><td><button className="btn btn-danger"onClick={this.delete}>Remove</button>&nbsp; &nbsp;
+                                    <button className="btn btn-danger"onClick={this.restore}>restore</button>
                                     </td></tr>
                                     
                             )
                         }
                         </tbody>
                         </table>
-						
+					</div>	
 					</div>
                 )
             }
