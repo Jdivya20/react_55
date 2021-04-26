@@ -1,4 +1,4 @@
-[{"task":"Task1","time":"10:34"},
- {"task":"Task2","time":"5:34"},
- {"task":"Task3","time":"21:34"}
+[{"task":"Task1"},
+ {"task":"Task2"},
+ {"task":"Task3"}
  ]

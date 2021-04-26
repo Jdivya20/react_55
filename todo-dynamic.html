@@ -32,10 +32,10 @@
 	
 	<script type="text/babel">
 		
-		class Todo extends React.Component{	
+		class Tododynamic extends React.Component{	
 			constructor(props){
 				super(props);
-				this.state = {task:"",tasks:[],count:0,time:"", isEdit:false,index:-1};
+				this.state = {task:"",tasks:[],cached:[],index:-1};
                
 			}
             componentDidMount(){
@@ -45,29 +45,6 @@
                     console.log(tasks)
                     this.setState({tasks:tasks})
                 })
-            //     // localStorage.setItem("tasks",JSON.stringify([]))
-            //     let tasks=localStorage.getItem("tasks")
-            //     console.log(tasks)
-            //     if(tasks!=null){
-            //         this.setState({tasks:JSON.parse(tasks)})
-            //     }
-            //     window.addEventListener("beforeunload",()=>{
-            //     localStorage.setItem("tasks",JSON.stringify(this.state.tasks))
-            // });
-            // setInterval(this.checkDeadLine,1000)
-            // }
-            // // checkDeadLine=()=>{
-            // //     const tasks=this.state.tasks
-            // //     const time=this.state.time
-            // //     let today=new Date()
-            // //     let dline=today.getHours()+":"+today.getMinutes()
-            // //     console.log(dline)
-            // //     console.log(time)
-            // //     if(this.state.time==dline){
-            // //         return this.remove
-                   
-            // //     }
-            // //     // console.log(time)
             }
           
 						
@@ -77,8 +54,8 @@
                     <div>
                         <h1>Todotasks</h1>
 						<div class="form-group">
-							<task  onChange={this.read} name="task" type="text" value={this.state.task} />
-                            <task  onChange={this.read} name="time" type="time" value={this.state.time} />
+							<input  onChange={this.read} name="task" type="text" value={this.state.task} />
+                            
 						</div>
 					
 						<button className="btn btn-danger" onClick={this.clk} >add</button> &nbsp; &nbsp;
@@ -87,7 +64,7 @@
                             <thead>
                             <tr>
                                 <th>Task</th>
-                                <th>deadline</th>
+                                
                                 <th>Action</th>
                                 
                             </tr>
@@ -95,7 +72,8 @@
                             <tbody>
 						{
                             this.state.tasks.map((ele,i)=>
-                                <tr key={i}><td>{ele.task}</td><td>{ele.time}</td><td><button value={i} className="btn btn-danger"onClick={this.remove}>Remove</button>&nbsp; &nbsp;
+                                <tr key={i}><td>{ele}</td><td><button value={i} className="btn btn-danger"onClick={(event)=>{this.remove(event,i)}
+}>Remove</button>&nbsp; &nbsp;
                                     <button value={i} className="btn btn-danger"onClick={this.edit}>edit</button>
                                     </td></tr>
                                     
@@ -105,34 +83,52 @@
                         </table>
                        
                         <h4>The number of items in the tasks are { this.state.tasks.length }.</h4>
-                        
+                        <h1>Todotasks in Recyclebin</h1>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Task</th>
+                                
+                                <th>Action</th>
+                                
+                            </tr>
+                            </thead>
+                            <tbody>
+						{
+                            this.state.cached.map((ele,i)=>
+                                <tr key={i}><td>{ele}</td><td><button value={i} className="btn btn-danger"onClick={this.delete}>Remove</button>&nbsp; &nbsp;
+                                    <button value={i} className="btn btn-danger"onClick={this.restore}>restore</button>
+                                    </td></tr>
+                                    
+                            )
+                        }
+                        </tbody>
+                        </table>
 						
 					</div>
                 )
             }
-      
-            remove=(i)=>{
-             var txt;
-             var r=confirm("are you sure about this?")
-             if(r==true){
-                const tasks1=[...this.state.tasks]
-                console.log(tasks1)
-                tasks1.splice(i,1)
-                // console.log(tasks1.splice(i,1))
-                this.setState({ 
-                    tasks:tasks1,
-                    count:this.state.count-1
-                })
-            }
-            else{
-                return;
-            }
-            }
+            // remove=(ele)=>{
+            //     let cached=[...this.state.cached];
+            //     console.log(ele.target.value)
+            //     console.log(cached[1])
+            //     this.cached.cached.push(tasks[1])
+            //     tasks.splice(ele.target.value,1)
+            //     this.setState({tasks:tasks})
+            // }
+            remove=(event,i)=>{
+        var n=[...this.state.tasks]
+        this.state.cached=[...this.state.cached,n.splice(i,1)]      
+        this.setState(state=>({tasks:n,}));
+        // console.log(this.state.restore)
+      }
+
+
             clk=()=>{
                 
-                if(this.state.task!=="" && this.state.time!==""){
+                if(this.state.task!==""){
                 this.setState({
-                    tasks:[...this.state.tasks,[this.state.task,this.state.time]],task:"",count:this.state.count+1,time:""
+                    tasks:[...this.state.tasks,{task:this.state.task}],task:"",count:this.state.count+1
                 })
             }
                
@@ -195,7 +191,51 @@
 
        
         }
+        // class Recyclebin extends React.Component{
+        //     constructor(props){
+        //         super(props);
+        //         this.state={tasks:[]}
+        //         this.cached={}
+        //     }			
+		// 	render(){
+                
+		// 		return (
+        //             <div>
+        //                 <h1>Todotasks in Recyclebin</h1>
+        //                 <table>
+        //                     <thead>
+        //                     <tr>
+        //                         <th>Task</th>
+                                
+        //                         <th>Action</th>
+                                
+        //                     </tr>
+        //                     </thead>
+        //                     <tbody>
+		// 				{
+        //                     this.cached.tasks.map((ele,i)=>
+        //                         <tr key={i}><td>{ele.task}</td><td><button value={i} className="btn btn-danger"onClick={this.delete}>Remove</button>&nbsp; &nbsp;
+        //                             <button value={i} className="btn btn-danger"onClick={this.restore}>restore</button>
+        //                             </td></tr>
+                                    
+        //                     )
+        //                 }
+        //                 </tbody>
+        //                 </table>
+		// 			</div>
+        //         );
+        //     }
+        //     delete=(ele)=>{
+        //         let tasks=[this.state.tasks];
+        //         console.log(ele.target.value)
+        //         console.log(tasks[1])
+        //         this.cached.tasks.push(tasks[1])
+        //         tasks.splice(ele.target.value,1)
+        //         this.setState({tasks:tasks})
+        //     }
+        // }
         
-        ReactDOM.render(<Todo />,document.querySelector("#app"));
+        ReactDOM.render(<Tododynamic />,document.querySelector("#app"));
+        // ReactDOM.render(<Recyclebin />,document.querySelector("#app1"));
     </script>
 </html>
