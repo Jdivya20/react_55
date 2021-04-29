@@ -1,0 +1,156 @@
+.App {
+  text-align: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  
+}
+
+.block{
+  /* background-image: url("https://i.pinimg.com/originals/59/e7/58/59e758cd94b6a989aa2cc7b4eeb68098.jpg"); */
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+  font-size: 2rem;
+  color: white;
+  padding: 5%;
+  border: 2px solid wheat;
+  max-width:75%;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 75%;
+
+}
+
+body{
+  background-image: url("images/blocks-252602_1920.jpg");
+  background-color: rgba(14, 0, 0, 0.589);
+  background-blend-mode: overlay;
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+  background-size: cover;
+  background-position: center;
+}
+
+
+h1 {
+  text-align: center;
+  font-size: 50px;
+}
+
+table {
+  margin: 0 auto;
+  border-spacing: 0px 0px;
+}
+
+.button {
+  background-color:orangered;
+  color: white;
+  height: 60px;
+  width: 100px;
+  /* border-radius: 5px;
+  margin: 0 auto;
+  margin-bottom: 25px; */
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+}
+
+
+.button:hover {
+  background-color:lime;
+  color: white;
+
+}
+
+.cell {
+  height: 70px;
+  width: 70px;
+  background-color:orchid;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+/* .message {
+  text-align: center;
+  font-size: 17px;
+} */
+
+.white {
+  height: 60px;
+  width: 60px;
+  background-color: #FFF;
+  border-radius: 100px;
+}
+
+.pink {
+  height: 60px;
+  width: 60px;
+  background-color:crimson;
+  border-radius: 100px;
+}
+
+.blue {
+  height: 60px;
+  width: 60px;
+  background-color:royalblue;
+  border-radius: 100px;
+}
+
+.routes{
+  color:gold;
+  font-size:150%;
+  text-align: center;
+  text-decoration: none;
+ 
+}
+
+/* a{
+  color: red;
+} */
+
+input[type=text], select {
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid salmon;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: large;
+}
+
+.containerflex{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding-bottom: 0.5%;
+}
+
+.img{
+  background-image: url("images/images.jfif");
+   /* background-color: rgba(255,255,255,0);
+  background-blend-mode: overlay; */
+  background-repeat: no-repeat;
+  /* background-attachment: fixed;  
+  background-size: cover; */
+  background-position: center;
+  width: 55%;
+  text-align: center;
+  padding-bottom: 14%;
+  margin-left: auto;
+  margin-right: auto;
+}
+Link{
+  text-decoration: none;
+}
