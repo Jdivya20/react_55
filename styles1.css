@@ -1,0 +1,41 @@
+.block{
+    margin: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;
+    border: 2px dashed wheat;
+    text-align: center;
+    color: antiquewhite;
+    /* background-color: rgba(214, 11, 241, 0.788); */
+    
+}
+.bg-img{
+    background-color: dodgerblue;
+}
+.form-rounded { 
+    border-radius: 0.5rem; 
+    } 
+a{
+    text-decoration: none;
+    color: antiquewhite;
+}
+/* .bg-img{
+    background-image: url('images/login-3938430_1920.jpg');
+    background-color: rgba(255,255,255,0);
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;
+    background-position: center;
+   
+} */
+.bg-img1{
+    background-image: url('images/calculator-168360_1920.jpg');
+    background-color: rgba(255,255,255,0);
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;
+    background-position: center;
+   
+}

@@ -1,0 +1,38 @@
+.bg-img{
+    background-image: url('images/woman-1245817_1920.jpg');
+    background-color: rgba(255,255,255,0);
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;
+    background-position: center;
+   
+}
+.block{
+    margin: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;
+    border: 2px dashed wheat;
+    text-align: center;
+    color:black
+    /* background-color: rgba(214, 11, 241, 0.788); */
+    
+}
+table{
+    border: 2px solid crimson;
+    border-collapse: collapse;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+th, td {
+    border: 2px solid crimson;
+    text-align: center;
+    padding: 5px;
+    font-weight: 2em;
+ 
+}
+h4{
+    background-color: white;
+}

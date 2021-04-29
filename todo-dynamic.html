@@ -1,0 +1,243 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>
+		Todotasks
+	</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+	<link rel="stylesheet" href="todo.css">
+
+	<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+	
+	<!-- <style>
+		div task, select {
+			margin:10px;
+		}
+	</style> -->
+	</head>
+	
+	<body class="bg-img">
+		<div id="app" class="block"></div>
+		
+		<div id="app1"></div>
+	</body>
+	
+	<script type="text/babel">
+		
+		class Tododynamic extends React.Component{	
+			constructor(props){
+				super(props);
+				this.state = {task:"",tasks:[],cached:[],index:-1};
+               
+			}
+            componentDidMount(){
+                fetch('https://raw.githubusercontent.com/Jdivya20/react_55/master/tasks')
+                .then(tasks=>tasks.json())
+                .then(tasks=>{
+                    console.log(tasks)
+                    this.setState({tasks:tasks})
+                })
+            }
+          
+						
+			render(){
+                
+				return (
+                    <div>
+                        <h1>Todotasks</h1>
+						<div class="form-group">
+							<input  onChange={this.read} name="task" type="text" value={this.state.task} />
+                            
+						</div>
+					
+						<button className="btn btn-danger" onClick={this.clk} >add</button> &nbsp; &nbsp;
+                        <button className="btn btn-danger" onClick={this.Update} >update</button><br/><br/>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Task</th>
+                                
+                                <th>Action</th>
+                                
+                            </tr>
+                            </thead>
+                            <tbody>
+						{
+                            this.state.tasks.map((ele,i)=>
+                                <tr key={i}><td>{ele.task}</td><td><button value={i} className="btn btn-danger"onClick={(event)=>{this.remove(event,i)}
+}>Remove</button>&nbsp; &nbsp;
+                                    <button value={i} className="btn btn-danger"onClick={this.edit}>edit</button>
+                                    </td></tr>
+                                    
+                            )
+                        }
+                        </tbody>
+                        </table>
+                        
+                        <div>
+                       
+                        <h4>The number of items in the tasks are { this.state.tasks.length }.</h4>
+                        <h1>Todotasks in Recyclebin</h1>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Task</th>
+                                
+                                <th>Action</th>
+                                
+                            </tr>
+                            </thead>
+                            <tbody>
+						{
+                            this.state.cached.map((ele,i)=>
+                                <tr key={i}><td>{ele.task}</td><td><button className="btn btn-danger"onClick={this.delete}>Remove</button>&nbsp; &nbsp;
+                                    <button className="btn btn-danger"onClick={this.restore}>restore</button>
+                                    </td></tr>
+                                    
+                            )
+                        }
+                        </tbody>
+                        </table>
+					</div>	
+					</div>
+                )
+            }
+            // remove=(ele)=>{
+            //     let cached=[...this.state.cached];
+            //     console.log(ele.target.value)
+            //     console.log(cached[1])
+            //     this.cached.cached.push(tasks[1])
+            //     tasks.splice(ele.target.value,1)
+            //     this.setState({tasks:tasks})
+            // }
+            remove=(event,i)=>{
+        var n=[...this.state.tasks]
+        this.state.cached=[...this.state.cached,n.splice(i,1)]      
+        this.setState(state=>({tasks:n,}));
+        // console.log(this.state.restore)
+      }
+
+
+            clk=()=>{
+                
+                if(this.state.task!==""){
+                this.setState({
+                    tasks:[...this.state.tasks,{task:this.state.task}],task:"",count:this.state.count+1
+                })
+            }
+               
+            }
+       
+            edit = (ele,index) => {
+                console.log(ele.target.value)
+                const tasks=this.state.tasks
+                const taskss=tasks[ele.target.value]
+                console.log(tasks)
+                this.setState({task:taskss[0],time:taskss[1],index:index,isEdit:true});
+            }
+
+            read= (ele) =>{
+                this.setState({[ele.target.name]:ele.target.value});     
+            }
+   
+
+        //     update=()=>{
+        //         if(this.state.task!=="" && this.state.time!==""){
+        //             if(this.state.isEdit){
+        //                 let tasks=this.state.tasks
+        //                 let index=this.tate.index
+        //                 tasks[index]={task:this.state.task,index:-1}
+        //                 this.setState({tasks:tasks,task:"",time:"",isEdit:false});
+        //             }
+        //     }
+        // }
+            // update=()=>{
+            //     const index=this.state.index;
+            //     const tasks = this.state.tasks;
+            //     if(index>=0){
+            //         tasks[index] = {task:this.state.task,index:-1};
+            //         this.setState({tasks:tasks});
+            //     }
+            // }
+        //     update=()=>{
+        //         const index=this.state.index;
+        //         const students = this.state.tasks;
+        //         if(index>=0){
+        //             students[index] = {name:this.state.name,index:-1};
+        //             this.setState({tasks:students});
+        //         }
+
+        // }
+        Update=()=>{
+       const tasks=[...this.state.tasks];
+     
+       tasks[this.state.index]=[this.state.task,this.state.time];
+       console.log(tasks)
+        this.setState(state=>({
+          tasks:tasks
+        //   task:""
+          
+        }));
+        }
+    // Update=(event)=>{
+    //     this.setState({task:event.target.value,});
+    //          }
+
+       
+        }
+        // class Recyclebin extends React.Component{
+        //     constructor(props){
+        //         super(props);
+        //         this.state={tasks:[]}
+        //         this.cached={}
+        //     }			
+		// 	render(){
+                
+		// 		return (
+        //             <div>
+        //                 <h1>Todotasks in Recyclebin</h1>
+        //                 <table>
+        //                     <thead>
+        //                     <tr>
+        //                         <th>Task</th>
+                                
+        //                         <th>Action</th>
+                                
+        //                     </tr>
+        //                     </thead>
+        //                     <tbody>
+		// 				{
+        //                     this.cached.tasks.map((ele,i)=>
+        //                         <tr key={i}><td>{ele.task}</td><td><button value={i} className="btn btn-danger"onClick={this.delete}>Remove</button>&nbsp; &nbsp;
+        //                             <button value={i} className="btn btn-danger"onClick={this.restore}>restore</button>
+        //                             </td></tr>
+                                    
+        //                     )
+        //                 }
+        //                 </tbody>
+        //                 </table>
+		// 			</div>
+        //         );
+        //     }
+        //     delete=(ele)=>{
+        //         let tasks=[this.state.tasks];
+        //         console.log(ele.target.value)
+        //         console.log(tasks[1])
+        //         this.cached.tasks.push(tasks[1])
+        //         tasks.splice(ele.target.value,1)
+        //         this.setState({tasks:tasks})
+        //     }
+        // }
+        
+        ReactDOM.render(<Tododynamic />,document.querySelector("#app"));
+        // ReactDOM.render(<Recyclebin />,document.querySelector("#app1"));
+    </script>
+</html>

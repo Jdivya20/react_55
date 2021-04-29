@@ -1,0 +1,33 @@
+.block{
+    margin: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;
+    border: 1px solid #4CAF50;
+    text-align: center;
+    color: antiquewhite;
+    
+}
+.bg-img{
+    background-image: url('images/gold-foil-digital-paper-6051502_1920.jpg');
+    background-color: rgba(255,255,255,0);
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;
+    background-position: center;
+   
+}
+.bg-img1{
+    background-image: url('images/calculator-168360_1920.jpg');
+    background-color: rgba(255,255,255,0);
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;
+    background-position: center;
+   
+}
+.btn{
+    margin: 20px;
+}
